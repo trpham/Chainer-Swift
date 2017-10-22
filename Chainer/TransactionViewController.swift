@@ -179,7 +179,7 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                 if let sourceText = addedTransaction.source {
                 cell.sourceLabel.text =  "Source: \(sourceText)"
                 }
-                if let destinationText = addedTransaction.source {
+                if let destinationText = addedTransaction.destination {
                 cell.destinationLabel.text = "Destination: \(destinationText)"
                 }
                 if let amountText = addedTransaction.amount {
