@@ -11,9 +11,12 @@ import Alamofire
 
 class PublicationViewController: UIViewController {
 
+    @IBOutlet weak var authorizationID: UILabel!
+    @IBOutlet weak var isVerified: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPublications()
+//        getPublications()
         
     }
 
@@ -30,13 +33,13 @@ class PublicationViewController: UIViewController {
             if let jsonObj = try? JSONSerialization.jsonObject(with: response.data!,
                                                                options: .allowFragments) as? NSDictionary {
                 
-                
-//                if let userData = jsonObj!.value(forKey: "data") as? NSArray {
-//                    self.contracts = userData as! [[String : Any]]
-//                }
-//
-//                //                print(self.contracts)
-//                self.tableView.reloadData()
+                if let datas = jsonObj!.value(forKey: "data") as? NSArray {
+                    
+                    print(datas)
+                    
+                    var AuthorizeArray = datas.value(forKey: "authorization") as! NSArray
+                    self.authorizationID.text = AuthorizeArray[0] as! String
+                }
             }
         }
     }

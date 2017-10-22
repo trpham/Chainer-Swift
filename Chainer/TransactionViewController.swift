@@ -21,6 +21,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var amountTextField: UITextField!
     
+    @IBOutlet weak var veriffyButton: UIButton!
+    
     var transactions: [Transaction] = []
     
     var users: [[String: String]] = []
@@ -95,30 +97,15 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
                           encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             switch response.result {
             case .success:
-                print("1111")
+//                print("1111")
                 print(response)
                 break
             case .failure(let error):
                 print(error)
             }
         }
-//            print("Request: \(String(describing: response.request))")   // original url request
-//            print("Response: \(String(describing: response.response))") // http url response
-//            print("Result: \(response.result)")                         // response serialization result
-//
-//            if let jsonObj = try? JSONSerialization.jsonObject(with: response.data!,
-//                                                               options: .allowFragments) as? NSDictionary {
-//
-//
-//                if let userData = jsonObj!.value(forKey: "data") as? NSArray {
-//                    self.contracts = userData as! [[String : Any]]
-//                }
-//
-//                print(self.contracts)
-//
-//                self.tableView.reloadData()
-//            }
         
+         performSegue(withIdentifier: "toPublications", sender: nil)
     }
     
     func insertNewTransaction() {
@@ -204,7 +191,15 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
 //            self.addedTransaction.destination = cell?.textLabel?.text
         }
         else {
-
+            let cell = tableView.cellForRow(at: indexPath) as! TransactionTableViewCell
+            
+            if let title = cell.verifyButton.titleLabel?.text {
+                if title == "Unverified" {
+                    cell.verifyButton.titleLabel?.text = "Verified"
+                    cell.verifyButton.backgroundColor = UIColor.blue
+                    cell.isUserInteractionEnabled = false
+                }
+            }
         }
     }
 
