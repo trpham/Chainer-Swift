@@ -1,0 +1,6 @@
+framework module Pods_Chainer {
+  umbrella header "Pods-Chainer-umbrella.h"
+
+  export *
+  module * { export * }
+}
