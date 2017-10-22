@@ -484,6 +484,7 @@
                         <outlet property="sourceButton" destination="vad-rh-abG" id="tcI-lr-OBX"/>
                         <outlet property="sourceTableView" destination="hxN-ez-Xgm" id="Tgi-Lj-6Um"/>
                         <outlet property="tableView" destination="b0V-jy-hpI" id="dll-jA-7E5"/>
+                        <outlet property="veriffyButton" destination="LWz-iX-9PG" id="r0N-Er-IrF"/>
                         <segue destination="9Nw-ti-t8C" kind="show" identifier="toPublications" id="Ky4-Dt-Qsl"/>
                     </connections>
                 </viewController>

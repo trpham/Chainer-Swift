@@ -23,6 +23,8 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var veriffyButton: UIButton!
     
+    var validated:Bool!
+    
     var transactions: [Transaction] = []
     
     var users: [[String: String]] = []
@@ -55,6 +57,16 @@ class TransactionViewController: UIViewController, UITableViewDelegate, UITableV
         
         sources = users
         destinations = users
+        
+        if (self.validated == true) {
+            self.veriffyButton.setTitle("Validated", for: .normal)
+            self.veriffyButton.backgroundColor = UIColor.blue
+        }
+        else {
+            self.veriffyButton.titleLabel?.text = "Validate"
+        }
+        
+        
         
 //        self.sourceTableView.estimatedRowHeight = 60
 //        self.sourceTableView.rowHeight = UITableViewAutomaticDimension

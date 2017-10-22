@@ -15,6 +15,8 @@ class ContractsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var selectedIndexPath: IndexPath?
     
+    var validated:Bool = false
+    
     var contracts: [[String: Any]] = []
     var users: [[String: String]] = []
     
@@ -79,7 +81,7 @@ class ContractsViewController: UIViewController, UITableViewDelegate, UITableVie
         if let datas = self.contracts[indexPath.row] as? NSDictionary {
             cell.contractLabel.text = datas.value(forKey: "name") as! String
             cell.contractDescription.text = datas.value(forKey: "description") as! String
-            if datas.value(forKey: "validated") as! Bool == false {
+            if datas.value(forKey: "validated") as! Bool == true {
                 cell.isValidated.isHidden = true
             }
         }
@@ -94,6 +96,7 @@ class ContractsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if let datas = self.contracts[indexPath.row] as? NSDictionary {
             globalContract = datas.value(forKey: "id") as! String
+            self.validated = datas.value(forKey: "validated") as! Bool
         }
         
         performSegue(withIdentifier: "toTransaction", sender: nil)
@@ -104,6 +107,7 @@ class ContractsViewController: UIViewController, UITableViewDelegate, UITableVie
             if identifier == "toTransaction" {
                 if let dest = segue.destination as? TransactionViewController {
                     dest.users = self.users
+                    dest.validated = self.validated
                 }
             }
         }
